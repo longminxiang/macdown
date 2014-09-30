@@ -50,3 +50,13 @@ pod install
 and open `MacDown.xcworkspace` in Xcode. The first command initialises the dependency submodule(s) used in MacDown; the second one installs dependencies managed by CocoaPods.
 
 Refer to the official guides of Git and CocoaPods if you need more instructions. If you run into build issues later on, try running those commands again to update the dependencies.
+
+
+## This Fork changed
+
+####14-09-30
+
+change `- (NSString *)titleString` function
+
+	before: when the string is @"##title" or @"title" will return nil
+	after: fix the issue and limit the length of the title 128

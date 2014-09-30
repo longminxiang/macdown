@@ -80,6 +80,7 @@
 
 - (NSString *)titleString
 {
+    /*
     NSString *pattern = @"\\s+(\\S.*)$";
 
     // Try to find the highest ranked title.
@@ -101,6 +102,16 @@
         }
     }
     return nil;
+    */
+    
+    /* change by eric long */
+    NSInteger markLength = 6;
+    NSInteger length = self.length > markLength ? markLength : self.length;
+    NSString *title = [self stringByReplacingOccurrencesOfString:@"#" withString:@"" options:NSCaseInsensitiveSearch range:NSMakeRange(0, length)];
+    
+    NSInteger titleMaxLength = 128;
+    if (title.length > titleMaxLength) title = [title substringToIndex:titleMaxLength];
+    return title;
 }
 
 @end
