@@ -108,6 +108,8 @@
     NSInteger markLength = 6;
     NSInteger length = self.length > markLength ? markLength : self.length;
     NSString *title = [self stringByReplacingOccurrencesOfString:@"#" withString:@"" options:NSCaseInsensitiveSearch range:NSMakeRange(0, length)];
+    NSCharacterSet *spaceSet = [NSCharacterSet whitespaceCharacterSet];
+    title = [title stringByTrimmingCharactersInSet:spaceSet];
     
     NSInteger titleMaxLength = 128;
     if (title.length > titleMaxLength) title = [title substringToIndex:titleMaxLength];
