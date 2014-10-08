@@ -105,9 +105,13 @@
     */
     
     /* change by eric long */
+    
+    NSString *title = [self componentsSeparatedByString:@"\n"][0];
+    
     NSInteger markLength = 6;
-    NSInteger length = self.length > markLength ? markLength : self.length;
-    NSString *title = [self stringByReplacingOccurrencesOfString:@"#" withString:@"" options:NSCaseInsensitiveSearch range:NSMakeRange(0, length)];
+    NSInteger length = title.length > markLength ? markLength : title.length;
+    title = [title stringByReplacingOccurrencesOfString:@"#" withString:@"" options:NSCaseInsensitiveSearch range:NSMakeRange(0, length)];
+    
     NSCharacterSet *spaceSet = [NSCharacterSet whitespaceCharacterSet];
     title = [title stringByTrimmingCharactersInSet:spaceSet];
     
