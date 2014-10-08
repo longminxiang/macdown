@@ -106,18 +106,25 @@
     
     /* change by eric long */
     
-    NSString *title = [self componentsSeparatedByString:@"\n"][0];
+    //trim newline character
+    NSString *title = [self stringByTrimmingCharactersInSet:[NSCharacterSet newlineCharacterSet]];
     
+    //get first line
+    title = [title componentsSeparatedByString:@"\n"][0];
+    
+    //replace "#"
     NSInteger markLength = 6;
     NSInteger length = title.length > markLength ? markLength : title.length;
     title = [title stringByReplacingOccurrencesOfString:@"#" withString:@"" options:NSCaseInsensitiveSearch range:NSMakeRange(0, length)];
     
-    NSCharacterSet *spaceSet = [NSCharacterSet whitespaceCharacterSet];
-    title = [title stringByTrimmingCharactersInSet:spaceSet];
+    //trim space character
+    title = [title stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
     
+    //limit length
     NSInteger titleMaxLength = 128;
     if (title.length > titleMaxLength) title = [title substringToIndex:titleMaxLength];
-    return title;
+    
+    return title.length ? title : nil;
 }
 
 @end
